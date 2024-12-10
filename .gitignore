@@ -4,6 +4,11 @@
 node_modules
 .pnp
 .pnp.js
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # testing
 coverage
@@ -28,9 +33,17 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env*
 
 # turbo
 .turbo
 
 # ui
 dist/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
