@@ -1,26 +1,28 @@
-"use server";
-import { NextResponse, NextRequest } from "next/server";
-import queryString from "query-string";
+'use server'
+import { NextResponse, NextRequest } from 'next/server'
+import queryString from 'query-string'
+// import useSWR from 'swr'
 
 export const GET = async (req: NextRequest) => {
+  //  const { data, error, isLoading } = useSWR('', fetcher)
   const query = {
-    ingredients: queryString.parseUrl(req.url).query["ingredients[]"],
-    apiKey: process.env["SPOONACULAR_API_KEY"],
-  };
+    ingredients: queryString.parseUrl(req.url).query['ingredients[]'],
+    apiKey: process.env['SPOONACULAR_API_KEY'],
+  }
 
   const recipes = await fetch(
-    `https://api.spoonacular.com/recipes/findByIngredients?${queryString.stringify(query, { arrayFormat: "comma" })}`,
+    `https://api.spoonacular.com/recipes/findByIngredients?${queryString.stringify(query, { arrayFormat: 'comma' })}`,
     {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    }
-  ).then((res) => res.json());
+    },
+  ).then(res => res.json())
 
   return NextResponse.json({
-    message: "Cookbook api route",
+    message: 'Cookbook api route',
     date: new Date(),
     recipes,
-  });
-};
+  })
+}
